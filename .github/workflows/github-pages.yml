@@ -1,7 +1,6 @@
 ---
 name: Github Pages
-on:
-  workflow_dispatch
+on: workflow_dispatch
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -14,6 +13,7 @@ jobs:
         run: |
           yarn build
         env:
+          NODE_OPTIONS: "--max-old-space-size=8192"
           PREFIX_PATHS: true # works like --prefix-paths flag for 'gatsby build'
           PATH_PREFIX: ${{ github.event.repository.name }}
           ADOBE_LAUNCH_SRC: ${{ secrets.AIO_ADOBE_LAUNCH_SRC }}
@@ -36,4 +36,4 @@ jobs:
       - name: GH Pages URL
         id: gh-pages-url
         run: |
-          echo "View GH-Pages: $(https://adobedocs.github.io/${{ github.event.repository.name }})"
+          echo "View GH-Pages: $(https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }})"
