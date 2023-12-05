@@ -19,7 +19,7 @@
         (location.hostname === "localhost" || location.hostname === "127.0.0.1") ||
         window.location.pathname.startsWith("/commerce/admin-developer/")
      ) {
-        if (window.location.pathname === '/test-me/') {
+        if (window.location.pathname.replace(prefixPath, '') === '/test-me/') {
             redirectPath = prefixPath + "style-guide/";
             window.location.href = "http://" + window.location.host + "/" + redirectPath;
         }
